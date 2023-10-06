@@ -1,0 +1,53 @@
+{{define "hello"}}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <!-- TODO: change -->
+    <title>Hello, world!</title> 
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="description" content="" />
+    <link rel="icon" href="favicon.png">
+    <link rel="stylesheet" type="text/css" href="../static/styles.css" />
+    <script>
+        function filterOptions() {
+            // TODO: make this into template func that's actually readable?
+            var allOptions = [{{range $index, $option:= .Movies}} {{if $index}}, {{end}} "{{$option}}"{{end}}];
+            var input = document.getElementById('answer');
+            var datalist = document.getElementById('movieTitles');
+            datalist.innerHTML = '';
+
+            allOptions.forEach(optionValue => {
+                const sanitizedInput = input.value.toLowerCase()
+                const sanitizedOption = optionValue.toLowerCase()
+                if (sanitizedOption.includes(sanitizedInput) && sanitizedOption !== sanitizedInput) {
+                    var option = document.createElement('option');
+                    option.value = optionValue;
+                    datalist.appendChild(option);
+                }
+            });
+        }
+    </script>
+    <script src="https://unpkg.com/htmx.org@1.9.6"
+        integrity="sha384-FhXw7b6AlE/jyjlZH5iHa/tTe9EpJ1Y55RjcgPbjeWMskSxZt1v9qkxLJWNJaGni"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <section id="content">
+        <h3>What movie is this?</h3>
+        <div id="emoji">{{ .Selection }}</div>
+
+        <form id="player-answer">
+            <input id="answer" list="movieTitles" name="answer" maxlength="128" oninput="filterOptions()" />
+            <datalist id="movieTitles">
+            </datalist>
+            <button hx-post="/guess" hx-vars="emojiValue:document.getElementById('emoji').textContent"
+                hx-swap="innerHtml" hx-target="#content">Guess</button>
+        </form>
+    </section>
+</body>
+
+</html>
+{{end}}

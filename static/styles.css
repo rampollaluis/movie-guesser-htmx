@@ -1,0 +1,83 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #5B5F97;
+    height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h3 {
+    font-size: 1.5rem;
+    text-decoration: underline solid #FFC145;
+    text-decoration-thickness: 0.4rem;
+}
+
+#content {
+    padding: 2rem;
+    max-width: 800px;
+    width: 80%;
+    margin: auto;
+    background-color: #FFFFFB;
+    border-radius: 10px;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 10px 10px #B8B8D1;
+    text-align: center;
+}
+
+#emoji {
+    font-size: 3rem;
+}
+
+button {
+    background-color: #FF6B6C;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    font-size: 1.5rem;
+    transition-duration: 0.3s;
+}
+
+button:hover {
+    box-shadow: 5px 5px #FFC145;
+}
+
+button:active {
+    transform: translateY(2px);
+    box-shadow: 5px 3px #FFC145;
+}
+
+#player-answer {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+}
+
+#answer {
+    font-size: 1.5rem;
+}
+
+#outcome {
+    margin-top: 1rem;
+}
+
+svg:hover {
+    background-color: lightgray;
+    border-radius: 5px;
+}
+
+svg:active {
+    transform: translateY(2px);
+}
+
+svg.selected {
+    background-color: lightgray;
+    border-radius: 5px;
+}
