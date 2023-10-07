@@ -1,9 +1,12 @@
 {{ define "outcome" }}
-{{ if . }}
-Yes, that's right! 1/1022 or 0.01% of the players have gotten this question right.
+<div id="emoji">{{ .Emoji }}</div>
+<div id="outcome">
+{{ if .IsCorrect }}
+Yes, that's right! {{.Correct_count}}/{{.Total_count}} or {{.PercentageRight}}% of the players have gotten this question right.
 {{ else }}
 That's Incorrect :(
 {{ end }}
+</div>
 <div id="spacer"></div>
 <button hx-get="/" hx-target="body">Next</button>
 <div id="spacer"></div>
@@ -12,7 +15,7 @@ Rate question
     <svg id="thumbsUpBtn"
         hx-post="/vote-up"
         hx-swap="none"
-        hx-vals="js:{thumbsDownSelected:document.getElementById('thumbsDownBtn').classList.contains('selected'),thumbsUpSelected:document.getElementById('thumbsUpBtn').classList.contains('selected')}"
+        hx-vals="js:{emojiValue:document.getElementById('emoji').innerText,thumbsDownSelected:document.getElementById('thumbsDownBtn').classList.contains('selected'),thumbsUpSelected:document.getElementById('thumbsUpBtn').classList.contains('selected')}"
         hx-on::after-request="toggleSelected(this)"
         width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
     >
@@ -21,7 +24,7 @@ Rate question
     <svg id="thumbsDownBtn"
         hx-post="/vote-down"
         hx-swap="none"
-        hx-vals="js:{thumbsDownSelected:document.getElementById('thumbsDownBtn').classList.contains('selected'),thumbsUpSelected:document.getElementById('thumbsUpBtn').classList.contains('selected')}"
+        hx-vals="js:{emojiValue:document.getElementById('emoji').innerText,thumbsDownSelected:document.getElementById('thumbsDownBtn').classList.contains('selected'),thumbsUpSelected:document.getElementById('thumbsUpBtn').classList.contains('selected')}"
         hx-on::after-request="toggleSelected(this)"
         width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
     >

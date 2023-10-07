@@ -19,3 +19,6 @@ go.work
 
 # air
 /tmp/
+
+# sqlite
+*.db
